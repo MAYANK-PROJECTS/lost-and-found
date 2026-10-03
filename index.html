@@ -1,129 +1,258 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FindIt | Smart Lost & Found</title>
+
     <link rel="stylesheet" href="style.css">
-</head><body><header>
+</head>
+
+<body>
+
+<header>
+
     <h1>🔎 FindIt</h1>
+
     <p>Smart Lost & Found</p>
-</header><main><section class="hero">
-    <h2>Find it. Report it. Return it.</h2>
 
-    <p>
-        Lost something? Or found an item?
-        FindIt helps you connect items with their owners.
-    </p>
-
-    <div class="buttons">
-        <button onclick="document.getElementById('searchInput').focus()">
-            🔍 Search Items
-        </button>
-
-        <button onclick="reportLost()">
-            📢 Report Lost
-        </button>
-
-        <button onclick="reportFound()">
-            📦 Report Found
-        </button>
-    </div>
-</section>
+</header>
 
 
-<section class="items">
+<main>
 
-    <h2>Search Items</h2>
+    <section class="hero">
 
-    <div class="search-area">
+        <h2>Find it. Report it. Return it.</h2>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search an item..."
+        <p>
+            Lost something? Or found an item?
+            FindIt helps you connect items with their owners.
+        </p>
+
+        <div class="buttons">
+
+            <button onclick="document.getElementById('searchInput').focus()">
+                🔍 Search Items
+            </button>
+
+            <button onclick="reportLost()">
+                📢 Report Lost
+            </button>
+
+            <button onclick="reportFound()">
+                📦 Report Found
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="items">
+
+        <h2>Search Items</h2>
+
+        <div class="search-area">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search an item..."
+            >
+
+            <button onclick="searchItems()">
+                🔍 Search
+            </button>
+
+            <select id="filter" onchange="filterItems()">
+
+                <option value="all">All Items</option>
+
+                <option value="lost">Lost Items</option>
+
+                <option value="found">Found Items</option>
+
+            </select>
+
+        </div>
+
+
+        <h2>Recent Items</h2>
+
+
+        <div
+            class="item-card"
+            data-type="lost"
         >
 
-        <button onclick="searchItems()">
-            🔍 Search
-        </button>
+            <h3>🎒 School Bag</h3>
 
-        <select id="filter" onchange="filterItems()">
-            <option value="all">All Items</option>
-            <option value="lost">Lost Items</option>
-            <option value="found">Found Items</option>
-        </select>
+            <p>
+                <strong>Status:</strong> Lost
+            </p>
 
-    </div>
+            <p>
+                <strong>Location:</strong> School Campus
+            </p>
 
+            <button onclick="viewItem('School Bag')">
+                View Details
+            </button>
 
-    <h2>Recent Items</h2>
-
-
-    <div
-        class="item-card"
-        data-type="lost"
-    >
-        <h3>🎒 School Bag</h3>
-
-        <p>
-            <strong>Status:</strong> Lost
-        </p>
-
-        <p>
-            <strong>Location:</strong> School Campus
-        </p>
-
-        <button onclick="viewItem('School Bag')">
-            View Details
-        </button>
-    </div>
+        </div>
 
 
-    <div
-        class="item-card"
-        data-type="found"
-    >
-        <h3>📱 Mobile Phone</h3>
+        <div
+            class="item-card"
+            data-type="found"
+        >
 
-        <p>
-            <strong>Status:</strong> Found
-        </p>
+            <h3>📱 Mobile Phone</h3>
 
-        <p>
-            <strong>Location:</strong> Main Gate
-        </p>
+            <p>
+                <strong>Status:</strong> Found
+            </p>
 
-        <button onclick="viewItem('Mobile Phone')">
-            View Details
-        </button>
-    </div>
+            <p>
+                <strong>Location:</strong> Main Gate
+            </p>
+
+            <button onclick="viewItem('Mobile Phone')">
+                View Details
+            </button>
+
+        </div>
 
 
-    <div
-        class="item-card"
-        data-type="found"
-    >
-        <h3>👛 Black Wallet</h3>
+        <div
+            class="item-card"
+            data-type="found"
+        >
 
-        <p>
-            <strong>Status:</strong> Found
-        </p>
+            <h3>👛 Black Wallet</h3>
 
-        <p>
-            <strong>Location:</strong> Computer Lab
-        </p>
+            <p>
+                <strong>Status:</strong> Found
+            </p>
 
-        <button onclick="viewItem('Black Wallet')">
-            View Details
-        </button>
+            <p>
+                <strong>Location:</strong> Computer Lab
+            </p>
 
-        <button onclick="showMatch()">
-            🔎 Possible Match
-        </button>
-    </div>
+            <button onclick="viewItem('Black Wallet')">
+                View Details
+            </button>
 
-</section>
+            <button onclick="showMatch()">
+                🔎 Possible Match
+            </button>
 
-</main><footer>
-    <p>© 2026 FindIt — Smart Lost & Found</p>
-</footer><script src="script.js"></script></body>
+        </div>
+
+    </section>
+
+
+    <!-- REPORT FORM -->
+
+    <section class="report-section" id="reportSection">
+
+        <h2>📢 Report an Item</h2>
+
+        <form id="reportForm">
+
+            <label for="itemType">
+                Item Type
+            </label>
+
+            <select id="itemType" required>
+
+                <option value="">
+                    Select Type
+                </option>
+
+                <option value="lost">
+                    🔴 Lost Item
+                </option>
+
+                <option value="found">
+                    🟢 Found Item
+                </option>
+
+            </select>
+
+
+            <label for="itemName">
+                Item Name
+            </label>
+
+            <input
+                type="text"
+                id="itemName"
+                placeholder="e.g. Black Wallet"
+                required
+            >
+
+
+            <label for="itemLocation">
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="itemLocation"
+                placeholder="e.g. Computer Lab"
+                required
+            >
+
+
+            <label for="itemDescription">
+                Description
+            </label>
+
+            <textarea
+                id="itemDescription"
+                placeholder="Describe the item..."
+                required
+            ></textarea>
+
+
+            <label for="contactName">
+                Your Name
+            </label>
+
+            <input
+                type="text"
+                id="contactName"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <button type="submit">
+                🚀 Submit Report
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 FindIt — Smart Lost & Found
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
 </html>
