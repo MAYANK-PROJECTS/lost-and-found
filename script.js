@@ -237,3 +237,36 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
+function claimItem(itemName) {
+
+    const message =
+        "🤝 Claim Item\n\n" +
+        "You are trying to claim: " + itemName +
+        "\n\nPlease provide your name and contact details to continue.";
+
+    const userName = prompt(
+        message +
+        "\n\nEnter your name:"
+    );
+
+    if (!userName) {
+        return;
+    }
+
+    const contact = prompt(
+        "Enter your contact information:\n" +
+        "(For example, email or phone number)"
+    );
+
+    if (!contact) {
+        return;
+    }
+
+    alert(
+        "✅ Claim Request Created!\n\n" +
+        "Item: " + itemName +
+        "\nName: " + userName +
+        "\nContact: " + contact +
+        "\n\nThe request can be reviewed by the item reporter."
+    );
+}
