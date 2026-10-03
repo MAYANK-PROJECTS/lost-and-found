@@ -40,14 +40,12 @@ function filterItems() {
 
 function viewItem(itemName) {
     alert(
-        "📦 Item Details\n\n" +
+        "📦 ITEM DETAILS\n\n" +
         "Item: " + itemName +
-        "\nStatus: Reported\n\n" +
-        "More details will be available after verification."
+        "\n\nStatus: Reported" +
+        "\n\nFindIt helps connect this item with its rightful owner."
     );
 }
-
-
 function showMatch() {
     alert(
         "🔎 Possible Match Found!\n\n" +
