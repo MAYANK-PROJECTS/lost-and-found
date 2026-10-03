@@ -83,6 +83,8 @@
         <h2>Recent Items</h2>
 
 
+        <!-- SCHOOL BAG -->
+
         <div
             class="item-card"
             data-type="lost"
@@ -91,7 +93,7 @@
             <h3>🎒 School Bag</h3>
 
             <p>
-                <strong>Status:</strong> Lost
+                <strong>Status:</strong> 🔴 Lost
             </p>
 
             <p>
@@ -105,6 +107,8 @@
         </div>
 
 
+        <!-- MOBILE PHONE -->
+
         <div
             class="item-card"
             data-type="found"
@@ -113,7 +117,7 @@
             <h3>📱 Mobile Phone</h3>
 
             <p>
-                <strong>Status:</strong> Found
+                <strong>Status:</strong> 🟢 Found
             </p>
 
             <p>
@@ -124,15 +128,14 @@
                 View Details
             </button>
 
-            <button onclick="viewItem('Mobile Phone')">
-                View Details
+            <button onclick="claimItem('Mobile Phone')">
+                🤝 Claim Item
             </button>
 
-<button onclick="claimItem('Mobile Phone')">
-    🤝 Claim Item
-</button>            
         </div>
 
+
+        <!-- BLACK WALLET -->
 
         <div
             class="item-card"
@@ -142,7 +145,7 @@
             <h3>👛 Black Wallet</h3>
 
             <p>
-                <strong>Status:</strong> Found
+                <strong>Status:</strong> 🟢 Found
             </p>
 
             <p>
@@ -156,9 +159,10 @@
             <button onclick="showMatch()">
                 🔎 Possible Match
             </button>
+
             <button onclick="claimItem('Black Wallet')">
-    🤝 Claim Item
-</button>
+                🤝 Claim Item
+            </button>
 
         </div>
 
@@ -200,69 +204,4 @@
 
             <input
                 type="text"
-                id="itemName"
-                placeholder="e.g. Black Wallet"
-                required
-            >
-
-
-            <label for="itemLocation">
-                Location
-            </label>
-
-            <input
-                type="text"
-                id="itemLocation"
-                placeholder="e.g. Computer Lab"
-                required
-            >
-
-
-            <label for="itemDescription">
-                Description
-            </label>
-
-            <textarea
-                id="itemDescription"
-                placeholder="Describe the item..."
-                required
-            ></textarea>
-
-
-            <label for="contactName">
-                Your Name
-            </label>
-
-            <input
-                type="text"
-                id="contactName"
-                placeholder="Enter your name"
-                required
-            >
-
-
-            <button type="submit">
-                🚀 Submit Report
-            </button>
-
-        </form>
-
-    </section>
-
-</main>
-
-
-<footer>
-
-    <p>
-        © 2026 FindIt — Smart Lost & Found
-    </p>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
+               
