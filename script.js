@@ -17,6 +17,7 @@ function searchItems() {
     });
 }
 
+
 function filterItems() {
     const filterElement = document.getElementById("filter");
 
@@ -36,6 +37,7 @@ function filterItems() {
     });
 }
 
+
 function viewItem(itemName) {
     alert(
         "📦 Item Details\n\n" +
@@ -44,6 +46,7 @@ function viewItem(itemName) {
         "More details will be available after verification."
     );
 }
+
 
 function showMatch() {
     alert(
@@ -54,28 +57,122 @@ function showMatch() {
     );
 }
 
+
 function reportLost() {
-    alert(
-        "📢 Report Lost Item\n\n" +
-        "Lost item reporting will be available here."
-    );
+    document.getElementById("itemType").value = "lost";
+
+    document.getElementById("reportSection").scrollIntoView({
+        behavior: "smooth"
+    });
 }
+
 
 function reportFound() {
-    alert(
-        "📦 Report Found Item\n\n" +
-        "Found item reporting will be available here."
-    );
+    document.getElementById("itemType").value = "found";
+
+    document.getElementById("reportSection").scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
+
+function addNewItem(type, name, location, description) {
+
+    const itemsSection = document.querySelector(".items");
+
+    const card = document.createElement("div");
+
+    card.className = "item-card";
+    card.setAttribute("data-type", type);
+
+    const statusText = type === "lost" ? "Lost" : "Found";
+    const statusIcon = type === "lost" ? "🔴" : "🟢";
+
+    card.innerHTML =
+        "<h3>📦 " + name + "</h3>" +
+        "<p><strong>Status:</strong> " +
+        statusIcon + " " + statusText + "</p>" +
+        "<p><strong>Location:</strong> " +
+        location + "</p>" +
+        "<p><strong>Description:</strong> " +
+        description + "</p>" +
+        "<button onclick=\"viewItem('" + name + "')\">" +
+        "View Details" +
+        "</button>";
+
+    itemsSection.appendChild(card);
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.getElementById("searchInput");
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const reportForm =
+        document.getElementById("reportForm");
+
 
     if (searchInput) {
+
         searchInput.addEventListener("keyup", function(event) {
+
             if (event.key === "Enter") {
                 searchItems();
             }
+
         });
+
     }
+
+
+    if (reportForm) {
+
+        reportForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            const type =
+                document.getElementById("itemType").value;
+
+            const name =
+                document.getElementById("itemName").value.trim();
+
+            const location =
+                document.getElementById("itemLocation").value.trim();
+
+            const description =
+                document.getElementById("itemDescription").value.trim();
+
+
+            if (!type || !name || !location || !description) {
+
+                alert("⚠️ Please fill all required fields.");
+
+                return;
+
+            }
+
+
+            addNewItem(
+                type,
+                name,
+                location,
+                description
+            );
+
+
+            alert(
+                "✅ Report submitted successfully!\n\n" +
+                "Your item has been added to Recent Items."
+            );
+
+
+            reportForm.reset();
+
+        });
+
+    }
+
 });
