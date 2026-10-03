@@ -46,6 +46,8 @@ function viewItem(itemName) {
         "\n\nFindIt helps connect this item with its rightful owner."
     );
 }
+
+
 function showMatch() {
     alert(
         "🔎 Possible Match Found!\n\n" +
@@ -140,6 +142,18 @@ function addNewItem(type, name, location, description) {
     const statusText = type === "lost" ? "Lost" : "Found";
     const statusIcon = type === "lost" ? "🔴" : "🟢";
 
+    let buttons =
+        "<button onclick=\"viewItem('" + name + "')\">" +
+        "View Details" +
+        "</button>";
+
+    if (type === "found") {
+        buttons +=
+            "<button onclick=\"claimItem('" + name + "')\">" +
+            "🤝 Claim Item" +
+            "</button>";
+    }
+
     card.innerHTML =
         "<h3>📦 " + name + "</h3>" +
         "<p><strong>Status:</strong> " +
@@ -148,12 +162,7 @@ function addNewItem(type, name, location, description) {
         location + "</p>" +
         "<p><strong>Description:</strong> " +
         description + "</p>" +
-        "<button onclick=\"viewItem('" + name + "')\">" +
-        "View Details" +
-        "</button>" +
-        "<button onclick=\"claimItem('" + name + "')\">" +
-        "🤝 Claim Item" +
-        "</button>";
+        buttons;
 
     itemsSection.appendChild(card);
 }
