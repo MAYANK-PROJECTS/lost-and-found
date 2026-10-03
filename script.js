@@ -76,6 +76,27 @@ function reportFound() {
 }
 
 
+/* SAVE ITEMS */
+
+function getSavedItems() {
+    return JSON.parse(localStorage.getItem("finditItems")) || [];
+}
+
+
+function saveItem(item) {
+    const items = getSavedItems();
+
+    items.push(item);
+
+    localStorage.setItem(
+        "finditItems",
+        JSON.stringify(items)
+    );
+}
+
+
+/* ADD ITEM TO WEBSITE */
+
 function addNewItem(type, name, location, description) {
 
     const itemsSection = document.querySelector(".items");
@@ -104,6 +125,27 @@ function addNewItem(type, name, location, description) {
 }
 
 
+/* LOAD SAVED ITEMS */
+
+function loadSavedItems() {
+
+    const items = getSavedItems();
+
+    items.forEach(function(item) {
+
+        addNewItem(
+            item.type,
+            item.name,
+            item.location,
+            item.description
+        );
+
+    });
+}
+
+
+/* PAGE LOAD */
+
 document.addEventListener("DOMContentLoaded", function() {
 
     const searchInput =
@@ -111,6 +153,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const reportForm =
         document.getElementById("reportForm");
+
+
+    loadSavedItems();
 
 
     if (searchInput) {
@@ -155,6 +200,22 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
 
+            const newItem = {
+
+                type: type,
+
+                name: name,
+
+                location: location,
+
+                description: description
+
+            };
+
+
+            saveItem(newItem);
+
+
             addNewItem(
                 type,
                 name,
@@ -165,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             alert(
                 "✅ Report submitted successfully!\n\n" +
-                "Your item has been added to Recent Items."
+                "Your item has been saved successfully."
             );
 
 
