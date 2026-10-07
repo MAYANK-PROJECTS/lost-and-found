@@ -1,126 +1,66 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-font-family: Arial, sans-serif;
-background: #f4f7fb;
-color: #1f2937;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
 }
 
 header {
-background: #2563eb;
-color: white;
-text-align: center;
-padding: 35px 20px;
+    background: #2563eb;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
 }
 
 header h1 {
-font-size: 42px;
-margin-bottom: 8px;
+    font-size: 42px;
+    margin-bottom: 8px;
 }
 
 header p {
-font-size: 18px;
+    font-size: 18px;
 }
 
 main {
-max-width: 1000px;
-margin: auto;
-padding: 30px 20px;
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px 20px;
 }
 
 .hero {
-background: white;
-text-align: center;
-padding: 45px 25px;
-border-radius: 18px;
-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    background: white;
+    text-align: center;
+    padding: 45px 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
 .hero h2 {
-font-size: 30px;
-margin-bottom: 15px;
+    font-size: 30px;
+    margin-bottom: 15px;
 }
 
 .hero p {
-max-width: 650px;
-margin: 0 auto 30px;
-line-height: 1.6;
-color: #64748b;
+    max-width: 650px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+    color: #64748b;
 }
 
 .buttons {
-display: flex;
-justify-content: center;
-gap: 15px;
-flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 button {
-border: none;
-padding: 14px 22px;
-border-radius: 10px;
-background: #2563eb;
-color: white;
-font-size: 16px;
-cursor: pointer;
-}
-
-button:hover {
-background: #1d4ed8;
-}
-
-.items {
-margin-top: 35px;
-}
-
-.items > h2 {
-margin-bottom: 18px;
-}
-
-.item-card {
-background: white;
-padding: 22px;
-margin-bottom: 15px;
-border-radius: 14px;
-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-}
-
-.item-card h3 {
-margin-bottom: 10px;
-}
-
-.item-card p {
-margin-top: 6px;
-color: #64748b;
-}
-
-footer {
-text-align: center;
-padding: 25px;
-margin-top: 30px;
-background: #111827;
-color: white;
-}
-
-@media (max-width: 600px) {
-header h1 {
-font-size: 32px;
-}
-
-.hero h2 {
-    font-size: 24px;
-}
-
-.buttons {
-    flex-direction: column;
-}
-
-button {
-    width: 100%;
-}
-
-}
+    border: none;
+    padding: 14px 22px;
+    border-radius: 10px;
+   
