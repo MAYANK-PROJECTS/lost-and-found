@@ -1,90 +1,174 @@
+/* ==============================
+   FINDIT - SMART LOST & FOUND
+   ============================== */
+
+
+/* SEARCH ITEMS */
+
 function searchItems() {
-    const searchInput = document.getElementById("searchInput");
 
-    if (!searchInput) return;
+    const searchInput =
+        document.getElementById("searchInput");
 
-    const search = searchInput.value.toLowerCase().trim();
-    const cards = document.querySelectorAll(".item-card");
+    const search =
+        searchInput.value.toLowerCase().trim();
+
+    const cards =
+        document.querySelectorAll(".item-card");
 
     cards.forEach(function(card) {
-        const nameElement = card.querySelector("h3");
+
+        const nameElement =
+            card.querySelector("h3");
 
         if (!nameElement) return;
 
-        const name = nameElement.innerText.toLowerCase();
+        const name =
+            nameElement.innerText.toLowerCase();
 
-        card.style.display = name.includes(search) ? "block" : "none";
-    });
-}
-
-
-function filterItems() {
-    const filterElement = document.getElementById("filter");
-
-    if (!filterElement) return;
-
-    const filter = filterElement.value;
-    const cards = document.querySelectorAll(".item-card");
-
-    cards.forEach(function(card) {
-        const type = card.getAttribute("data-type");
-
-        if (filter === "all" || filter === type) {
-            card.style.display = "block";
+        if (name.includes(search)) {
+            card.style.display = "flex";
         } else {
             card.style.display = "none";
         }
+
     });
+
 }
 
 
+/* FILTER ITEMS */
+
+function filterItems() {
+
+    const filterElement =
+        document.getElementById("filter");
+
+    const filter =
+        filterElement.value;
+
+    const cards =
+        document.querySelectorAll(".item-card");
+
+    cards.forEach(function(card) {
+
+        const type =
+            card.getAttribute("data-type");
+
+        if (filter === "all" || filter === type) {
+            card.style.display = "flex";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+
+/* SEARCH BUTTON FROM HERO */
+
+function focusSearch() {
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    searchInput.focus();
+
+    searchInput.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+
+/* VIEW ITEM */
+
 function viewItem(itemName) {
+
     alert(
         "📦 ITEM DETAILS\n\n" +
         "Item: " + itemName +
         "\n\nStatus: Reported" +
-        "\n\nFindIt helps connect this item with its rightful owner."
+        "\n\nFindIt helps connect this item " +
+        "with its rightful owner."
     );
+
 }
 
 
+/* POSSIBLE MATCH */
+
 function showMatch() {
+
     alert(
-        "🔎 Possible Match Found!\n\n" +
+        "🔎 POSSIBLE MATCH FOUND!\n\n" +
         "Item: Black Wallet\n" +
         "Location: Computer Lab\n\n" +
         "Please verify ownership before claiming."
     );
+
 }
 
+
+/* REPORT LOST */
 
 function reportLost() {
-    document.getElementById("itemType").value = "lost";
 
-    document.getElementById("reportSection").scrollIntoView({
-        behavior: "smooth"
+    const type =
+        document.getElementById("itemType");
+
+    type.value = "lost";
+
+    const section =
+        document.getElementById("reportSection");
+
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
     });
+
 }
 
+
+/* REPORT FOUND */
 
 function reportFound() {
-    document.getElementById("itemType").value = "found";
 
-    document.getElementById("reportSection").scrollIntoView({
-        behavior: "smooth"
+    const type =
+        document.getElementById("itemType");
+
+    type.value = "found";
+
+    const section =
+        document.getElementById("reportSection");
+
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
     });
+
 }
 
 
-/* SAVE ITEMS */
+/* ==============================
+   LOCAL STORAGE
+   ============================== */
 
 function getSavedItems() {
-    return JSON.parse(localStorage.getItem("finditItems")) || [];
+
+    return JSON.parse(
+        localStorage.getItem("finditItems")
+    ) || [];
+
 }
 
 
 function saveItem(item) {
-    const items = getSavedItems();
+
+    const items =
+        getSavedItems();
 
     items.push(item);
 
@@ -92,87 +176,189 @@ function saveItem(item) {
         "finditItems",
         JSON.stringify(items)
     );
+
 }
 
 
-/* CLAIM ITEM */
+/* ==============================
+   CLAIM ITEM
+   ============================== */
 
 function claimItem(itemName) {
 
-    const userName = prompt(
-        "🤝 Claim Item\n\n" +
-        "Item: " + itemName +
-        "\n\nEnter your name:"
-    );
+    const userName =
+        prompt(
+            "🤝 CLAIM ITEM\n\n" +
+            "Item: " + itemName +
+            "\n\nEnter your name:"
+        );
 
     if (!userName) {
         return;
     }
 
-    const contact = prompt(
-        "Enter your contact information:\n" +
-        "(For example, email or phone number)"
-    );
+
+    const contact =
+        prompt(
+            "Enter your contact information:\n" +
+            "(Email or phone number)"
+        );
 
     if (!contact) {
         return;
     }
 
+
     alert(
-        "✅ Claim Request Created!\n\n" +
+        "✅ CLAIM REQUEST CREATED!\n\n" +
         "Item: " + itemName +
         "\nName: " + userName +
         "\nContact: " + contact +
         "\n\nThe request can be reviewed by the item reporter."
     );
+
 }
 
 
-/* ADD ITEM TO WEBSITE */
+/* ==============================
+   ADD NEW ITEM
+   ============================== */
 
-function addNewItem(type, name, location, description) {
+function addNewItem(
+    type,
+    name,
+    location,
+    description
+) {
 
-    const itemsSection = document.querySelector(".items");
+    const itemsContainer =
+        document.getElementById("itemsContainer");
 
-    const card = document.createElement("div");
+    if (!itemsContainer) return;
+
+
+    const card =
+        document.createElement("div");
 
     card.className = "item-card";
-    card.setAttribute("data-type", type);
 
-    const statusText = type === "lost" ? "Lost" : "Found";
-    const statusIcon = type === "lost" ? "🔴" : "🟢";
+    card.setAttribute(
+        "data-type",
+        type
+    );
+
+
+    const statusText =
+        type === "lost"
+            ? "Lost"
+            : "Found";
+
+
+    const statusIcon =
+        type === "lost"
+            ? "🔴"
+            : "🟢";
+
+
+    const itemIcon =
+        type === "lost"
+            ? "📦"
+            : "🔎";
+
 
     let buttons =
-        "<button onclick=\"viewItem('" + name + "')\">" +
+        "<button onclick=\"viewItem('" +
+        escapeQuotes(name) +
+        "')\">" +
         "View Details" +
         "</button>";
 
+
     if (type === "found") {
+
         buttons +=
-            "<button onclick=\"claimItem('" + name + "')\">" +
+            "<button class=\"claim-btn\" " +
+            "onclick=\"claimItem('" +
+            escapeQuotes(name) +
+            "')\">" +
             "🤝 Claim Item" +
             "</button>";
+
     }
 
-    card.innerHTML =
-        "<h3>📦 " + name + "</h3>" +
-        "<p><strong>Status:</strong> " +
-        statusIcon + " " + statusText + "</p>" +
-        "<p><strong>Location:</strong> " +
-        location + "</p>" +
-        "<p><strong>Description:</strong> " +
-        description + "</p>" +
-        buttons;
 
-    itemsSection.appendChild(card);
+    card.innerHTML =
+
+        "<div class=\"item-icon\">" +
+        itemIcon +
+        "</div>" +
+
+        "<div class=\"item-info\">" +
+
+        "<h3>" +
+        escapeHTML(name) +
+        "</h3>" +
+
+        "<span class=\"status " +
+        type +
+        "\">" +
+        statusIcon +
+        " " +
+        statusText +
+        "</span>" +
+
+        "<p>📍 " +
+        escapeHTML(location) +
+        "</p>" +
+
+        "<p>" +
+        escapeHTML(description) +
+        "</p>" +
+
+        buttons +
+
+        "</div>";
+
+
+    itemsContainer.appendChild(card);
+
 }
 
 
-/* LOAD SAVED ITEMS */
+/* ==============================
+   SECURITY HELPERS
+   ============================== */
+
+function escapeHTML(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function escapeQuotes(text) {
+
+    return text
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/"/g, "&quot;");
+
+}
+
+
+/* ==============================
+   LOAD SAVED ITEMS
+   ============================== */
 
 function loadSavedItems() {
 
-    const items = getSavedItems();
+    const items =
+        getSavedItems();
 
     items.forEach(function(item) {
 
@@ -184,99 +370,172 @@ function loadSavedItems() {
         );
 
     });
+
 }
 
 
-/* PAGE LOAD */
+/* ==============================
+   PAGE LOAD
+   ============================== */
 
-document.addEventListener("DOMContentLoaded", function() {
-
-    const searchInput =
-        document.getElementById("searchInput");
-
-    const reportForm =
-        document.getElementById("reportForm");
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
 
-    loadSavedItems();
+        loadSavedItems();
 
 
-    if (searchInput) {
+        /* SEARCH WITH ENTER */
 
-        searchInput.addEventListener("keyup", function(event) {
-
-            if (event.key === "Enter") {
-                searchItems();
-            }
-
-        });
-
-    }
-
-
-    if (reportForm) {
-
-        reportForm.addEventListener("submit", function(event) {
-
-            event.preventDefault();
-
-
-            const type =
-                document.getElementById("itemType").value;
-
-            const name =
-                document.getElementById("itemName").value.trim();
-
-            const location =
-                document.getElementById("itemLocation").value.trim();
-
-            const description =
-                document.getElementById("itemDescription").value.trim();
-
-
-            if (!type || !name || !location || !description) {
-
-                alert("⚠️ Please fill all required fields.");
-
-                return;
-
-            }
-
-
-            const newItem = {
-
-                type: type,
-
-                name: name,
-
-                location: location,
-
-                description: description
-
-            };
-
-
-            saveItem(newItem);
-
-
-            addNewItem(
-                type,
-                name,
-                location,
-                description
+        const searchInput =
+            document.getElementById(
+                "searchInput"
             );
 
 
-            alert(
-                "✅ Report submitted successfully!\n\n" +
-                "Your item has been saved successfully."
+        if (searchInput) {
+
+            searchInput.addEventListener(
+                "keyup",
+                function(event) {
+
+                    if (event.key === "Enter") {
+
+                        searchItems();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* REPORT FORM */
+
+        const reportForm =
+            document.getElementById(
+                "reportForm"
             );
 
 
-            reportForm.reset();
+        if (reportForm) {
 
-        });
+            reportForm.addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const type =
+                        document.getElementById(
+                            "itemType"
+                        ).value;
+
+
+                    const name =
+                        document.getElementById(
+                            "itemName"
+                        ).value.trim();
+
+
+                    const location =
+                        document.getElementById(
+                            "itemLocation"
+                        ).value.trim();
+
+
+                    const description =
+                        document.getElementById(
+                            "itemDescription"
+                        ).value.trim();
+
+
+                    const contactName =
+                        document.getElementById(
+                            "contactName"
+                        ).value.trim();
+
+
+                    const contactInfo =
+                        document.getElementById(
+                            "contactInfo"
+                        ).value.trim();
+
+
+                    if (
+                        !type ||
+                        !name ||
+                        !location ||
+                        !description ||
+                        !contactName ||
+                        !contactInfo
+                    ) {
+
+                        alert(
+                            "⚠️ Please fill all required fields."
+                        );
+
+                        return;
+
+                    }
+
+
+                    const newItem = {
+
+                        type: type,
+
+                        name: name,
+
+                        location: location,
+
+                        description: description,
+
+                        contactName: contactName,
+
+                        contactInfo: contactInfo
+
+                    };
+
+
+                    saveItem(newItem);
+
+
+                    addNewItem(
+                        type,
+                        name,
+                        location,
+                        description
+                    );
+
+
+                    alert(
+                        "✅ REPORT SUBMITTED!\n\n" +
+                        "Your " +
+                        (type === "lost"
+                            ? "lost"
+                            : "found") +
+                        " item has been saved successfully."
+                    );
+
+
+                    reportForm.reset();
+
+
+                    document
+                        .getElementById("itemsContainer")
+                        .lastElementChild
+                        .scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+
+                }
+            );
+
+        }
 
     }
-
-});
+);
