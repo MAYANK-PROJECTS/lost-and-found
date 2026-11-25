@@ -455,3 +455,7 @@ footer small {
         padding: 18px;
     }
 }
+/* Fix: Hide elements when hidden attribute is applied */
+[hidden] {
+    display: none !important;
+}
