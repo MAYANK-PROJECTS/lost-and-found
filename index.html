@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,24 +14,15 @@
 <body>
 
     <!-- HEADER -->
-
     <header>
-
-        <div class="logo">
-            🔎 FindIt
-        </div>
-
+        <div class="logo">🔎 FindIt</div>
         <p>Smart Lost & Found</p>
-
     </header>
-
 
     <main>
 
         <!-- HERO SECTION -->
-
         <section class="hero">
-
             <div class="hero-content">
 
                 <span class="badge">
@@ -51,49 +43,36 @@
 
                 <div class="hero-buttons">
 
-                    <button
-                        class="primary-btn"
+                    <button class="primary-btn"
                         onclick="focusSearch()">
                         🔍 Search Items
                     </button>
 
-                    <button
-                        class="secondary-btn"
+                    <button class="secondary-btn"
                         onclick="reportLost()">
                         📢 Report Lost
                     </button>
 
-                    <button
-                        class="secondary-btn"
+                    <button class="secondary-btn"
                         onclick="reportFound()">
                         📦 Report Found
                     </button>
 
                 </div>
-
             </div>
-
         </section>
 
 
         <!-- SEARCH SECTION -->
-
         <section class="section">
 
             <div class="section-title">
-
                 <span>🔎</span>
-
                 <div>
                     <h2>Search Items</h2>
-
-                    <p>
-                        Find lost and found items quickly.
-                    </p>
+                    <p>Find lost and found items quickly.</p>
                 </div>
-
             </div>
-
 
             <div class="search-box">
 
@@ -109,69 +88,39 @@
 
             </div>
 
-
             <div class="filter-box">
 
-                <label for="filter">
-                    Filter:
-                </label>
+                <label for="filter">Filter:</label>
 
-                <select
-                    id="filter"
-                    onchange="filterItems()">
+                <select id="filter" onchange="filterItems()">
 
-                    <option value="all">
-                        All Items
-                    </option>
-
-                    <option value="lost">
-                        🔴 Lost Items
-                    </option>
-
-                    <option value="found">
-                        🟢 Found Items
-                    </option>
+                    <option value="all">All Items</option>
+                    <option value="lost">🔴 Lost Items</option>
+                    <option value="found">🟢 Found Items</option>
 
                 </select>
 
             </div>
-
         </section>
 
 
         <!-- ITEMS SECTION -->
-
         <section class="section">
 
             <div class="section-title">
-
                 <span>📦</span>
-
                 <div>
                     <h2>Recent Items</h2>
-
-                    <p>
-                        Recently reported items.
-                    </p>
+                    <p>Recently reported items.</p>
                 </div>
-
             </div>
 
-
-            <div
-                class="items"
-                id="itemsContainer">
-
+            <div class="items" id="itemsContainer">
 
                 <!-- SCHOOL BAG -->
+                <div class="item-card" data-type="lost">
 
-                <div
-                    class="item-card"
-                    data-type="lost">
-
-                    <div class="item-icon">
-                        🎒
-                    </div>
+                    <div class="item-icon">🎒</div>
 
                     <div class="item-info">
 
@@ -181,34 +130,25 @@
                             🔴 Lost
                         </span>
 
-                        <p>
-                            📍 School Campus
-                        </p>
+                        <p>📍 School Campus</p>
 
                         <p>
                             A school bag reported missing
                             from the campus.
                         </p>
 
-                        <button
-                            onclick="viewItem('School Bag')">
+                        <button onclick="viewItem('School Bag')">
                             View Details
                         </button>
 
                     </div>
-
                 </div>
 
 
                 <!-- MOBILE PHONE -->
+                <div class="item-card" data-type="found">
 
-                <div
-                    class="item-card"
-                    data-type="found">
-
-                    <div class="item-icon">
-                        📱
-                    </div>
+                    <div class="item-icon">📱</div>
 
                     <div class="item-info">
 
@@ -218,40 +158,30 @@
                             🟢 Found
                         </span>
 
-                        <p>
-                            📍 Main Gate
-                        </p>
+                        <p>📍 Main Gate</p>
 
                         <p>
                             Mobile phone found near
                             the school main gate.
                         </p>
 
-                        <button
-                            onclick="viewItem('Mobile Phone')">
+                        <button onclick="viewItem('Mobile Phone')">
                             View Details
                         </button>
 
-                        <button
-                            class="claim-btn"
+                        <button class="claim-btn"
                             onclick="claimItem('Mobile Phone')">
                             🤝 Claim Item
                         </button>
 
                     </div>
-
                 </div>
 
 
                 <!-- BLACK WALLET -->
+                <div class="item-card" data-type="found">
 
-                <div
-                    class="item-card"
-                    data-type="found">
-
-                    <div class="item-icon">
-                        👛
-                    </div>
+                    <div class="item-icon">👛</div>
 
                     <div class="item-info">
 
@@ -261,95 +191,61 @@
                             🟢 Found
                         </span>
 
-                        <p>
-                            📍 Computer Lab
-                        </p>
+                        <p>📍 Computer Lab</p>
 
                         <p>
                             Black wallet found inside
                             the computer laboratory.
                         </p>
 
-                        <button
-                            onclick="viewItem('Black Wallet')">
+                        <button onclick="viewItem('Black Wallet')">
                             View Details
                         </button>
 
-                        <button
-                            onclick="showMatch()">
+                        <button onclick="showMatch()">
                             🔎 Possible Match
                         </button>
 
-                        <button
-                            class="claim-btn"
+                        <button class="claim-btn"
                             onclick="claimItem('Black Wallet')">
                             🤝 Claim Item
                         </button>
 
                     </div>
-
                 </div>
 
-
             </div>
-
         </section>
 
 
         <!-- REPORT SECTION -->
-
-        <section
-            class="report-section"
-            id="reportSection">
+        <section class="report-section" id="reportSection">
 
             <div class="section-title">
 
                 <span>📢</span>
 
                 <div>
-
                     <h2>Report an Item</h2>
-
-                    <p>
-                        Help someone find their lost item.
-                    </p>
-
+                    <p>Help someone find their lost item.</p>
                 </div>
 
             </div>
 
-
-            <!-- REPORT FORM -->
-
             <form id="reportForm">
 
+                <label for="itemType">Item Type</label>
 
-                <label for="itemType">
-                    Item Type
-                </label>
+                <select id="itemType" required>
 
-                <select
-                    id="itemType"
-                    required>
-
-                    <option value="">
-                        Select Type
-                    </option>
-
-                    <option value="lost">
-                        🔴 Lost Item
-                    </option>
-
-                    <option value="found">
-                        🟢 Found Item
-                    </option>
+                    <option value="">Select Type</option>
+                    <option value="lost">🔴 Lost Item</option>
+                    <option value="found">🟢 Found Item</option>
 
                 </select>
 
 
-                <label for="itemName">
-                    Item Name
-                </label>
+                <label for="itemName">Item Name</label>
 
                 <input
                     type="text"
@@ -359,9 +255,7 @@
                 >
 
 
-                <label for="itemLocation">
-                    Location
-                </label>
+                <label for="itemLocation">Location</label>
 
                 <input
                     type="text"
@@ -371,9 +265,7 @@
                 >
 
 
-                <label for="itemDescription">
-                    Description
-                </label>
+                <label for="itemDescription">Description</label>
 
                 <textarea
                     id="itemDescription"
@@ -382,9 +274,7 @@
                 ></textarea>
 
 
-                <label for="contactName">
-                    Your Name
-                </label>
+                <label for="contactName">Your Name</label>
 
                 <input
                     type="text"
@@ -394,9 +284,7 @@
                 >
 
 
-                <label for="contactInfo">
-                    Contact Information
-                </label>
+                <label for="contactInfo">Contact Information</label>
 
                 <input
                     type="text"
@@ -406,15 +294,135 @@
                 >
 
 
-                <button
-                    type="submit"
-                    class="submit-btn">
-
+                <button type="submit" class="submit-btn">
                     🚀 Submit Report
-
                 </button>
 
             </form>
+        </section>
+
+
+        <!-- SIGNUP AND LOGIN SECTION -->
+        <section class="section" id="auth-section">
+
+            <div class="section-title">
+
+                <span>🔐</span>
+
+                <div>
+                    <h2>Welcome to FindIt</h2>
+                    <p>Create an account or login to continue.</p>
+                </div>
+
+            </div>
+
+
+            <div class="auth-container">
+
+                <!-- SIGNUP FORM -->
+                <form id="signupForm">
+
+                    <h3>📝 Create Account</h3>
+
+                    <label for="signupName">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        placeholder="Enter your name"
+                        autocomplete="name"
+                        required
+                    >
+
+                    <label for="signupEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <label for="signupPassword">
+                        Create Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Minimum 6 characters"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button type="submit" class="submit-btn">
+                        🚀 Sign Up
+                    </button>
+
+                </form>
+
+
+                <!-- LOGIN FORM -->
+                <form id="loginForm">
+
+                    <h3>🔑 Login to Account</h3>
+
+                    <label for="loginEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button type="submit" class="submit-btn">
+                        🔓 Login
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- USER ACCOUNT AREA -->
+            <div id="userAccount" hidden>
+
+                <h3>👋 Welcome!</h3>
+
+                <p id="userDetails"></p>
+
+                <button
+                    type="button"
+                    id="logoutButton">
+                    Logout
+                </button>
+
+            </div>
+
+            <p id="authMessage" role="status"
+                aria-live="polite"></p>
 
         </section>
 
@@ -422,16 +430,11 @@
 
 
     <!-- FOOTER -->
-
     <footer>
 
-        <h3>
-            🔎 FindIt
-        </h3>
+        <h3>🔎 FindIt</h3>
 
-        <p>
-            Smart Lost & Found System
-        </p>
+        <p>Smart Lost & Found System</p>
 
         <small>
             © 2026 FindIt. All rights reserved.
@@ -441,7 +444,7 @@
 
 
     <script src="script.js"></script>
-<script type="module" src="firebase.js"></script>
-</body>
+    <script type="module" src="firebase.js"></script>
 
+</body>
 </html>
